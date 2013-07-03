@@ -1,0 +1,23 @@
+<!doctype html>
+<title>Map your gi numbers or protein accessions to Gene IDs</title>
+{% if name %}
+  <h1>Hello {{ name }}!</h1>
+{% else %}
+  <h1>Enter your email and ID list (protein Accession or GI number) below</h1>
+{% endif %}
+
+<form id="protein_form" method="post" target="_top">
+Email address: <br>
+<input type="text" name="email"><br>
+Protein ID list:<br>
+<textarea name="id_text" rows=20 cols=30></textarea><br>
+<input type="submit"><br><br>
+{% if results %}
+<h1>Results</h1>
+<textarea name="resultarea" rows=40 cols=30>
+{{results}}
+</textarea>
+{% endif %}
+</form>
+
+

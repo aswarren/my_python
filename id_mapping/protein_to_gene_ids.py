@@ -41,11 +41,10 @@ def my_efetch(db, **keywds):
     return Entrez._open(cgi, variables, post)
 
 
-def get_requirements():
-    from Bio import Entrez
-    import re
-    query_db='protein'
-    Entrez.efetch=my_efetch
+from Bio import Entrez
+import re
+query_db='protein'
+Entrez.efetch=my_efetch
 
 
 def acc_to_gi(id_list, rettype):
@@ -153,7 +152,6 @@ def update_ids(id_list, rettype='acc'):
 
 
 def process_text(email, id_text):
-    get_requirements()
     Entrez.email=email
     parts=re.findall(r"[\w']+", id_text)
     id_list=get_ids(parts)
