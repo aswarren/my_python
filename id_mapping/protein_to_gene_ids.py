@@ -66,7 +66,6 @@ def acc_to_gi(id_list, rettype):
 
 ## id list should be accessions
 def get_gene_ids(id_list):
-    assert re.search(r'[a-zA-Z]{2}_[0-9]+',id_list[0])
     results=id_list[:]
     for idx, val in enumerate(results): results[idx]=(results[idx],'-')
     order_ids={}
@@ -130,17 +129,16 @@ def get_ids(parts):
         tmp_p=p
         gi=None
         acc=None
-        match_acc=re.search(r'[a-zA-Z]{2}_[0-9]+',p)
+        match_acc=re.search(r'[a-zA-Z]{2}_[0-9]+',tmp_p)
         if match_acc: 
             acc=match_acc.group(0)
             tmp_p=tmp_p.replace(acc,'')
-        match_gi=re.search(r'([0-9]{4,})',p)
+        match_gi=re.search(r'([0-9]{4,})',tmp_p)
         if match_gi: gi=match_gi.group(0)
         if acc:
             query_ids.append(acc)
         elif gi:
             query_ids.append(gi)
-
     return query_ids
                 
 
@@ -153,7 +151,7 @@ def update_ids(id_list, rettype='acc'):
 
 def process_text(email, id_text):
     Entrez.email=email
-    parts=re.findall(r"[\w']+", id_text)
+    parts=re.split('[,\s\n]+', id_text.strip())
     id_list=get_ids(parts)
     gene_ids=get_gene_ids(id_list)
     result =""

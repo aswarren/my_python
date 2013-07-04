@@ -21,5 +21,5 @@ def geneid_results(email, id_text):
     return render_template('geneid.html', results=results)
 
 if __name__ == '__main__':
-    #app.debug=True
+    app.debug=True
     app.run(host='0.0.0.0')
