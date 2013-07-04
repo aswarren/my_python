@@ -158,3 +158,11 @@ def process_text(email, id_text):
     for i in gene_ids: result=result+"\t".join(i)+"\n"
     return result
 
+def just_values(init_text):
+    lines=init_text.split('\n')
+    results=[]
+    for line in lines:
+        parts=line.split("\t")
+        if parts[-1]!='-':
+            results.append(parts[-1])
+    return ",".join(results)

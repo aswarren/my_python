@@ -18,7 +18,8 @@ def get_geneids():
 
 def geneid_results(email, id_text):
     results=protein_to_gene_ids.process_text(email, id_text)
-    return render_template('geneid.html', results=results)
+    values=protein_to_gene_ids.just_values(results)
+    return render_template('geneid.html', results=results, values=values)
 
 if __name__ == '__main__':
     app.debug=True
