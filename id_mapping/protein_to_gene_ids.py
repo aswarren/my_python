@@ -156,10 +156,10 @@ def process_text(email, id_text):
     gene_ids=get_gene_ids(id_list)
     result =""
     for i in gene_ids: result=result+"\t".join(i)+"\n"
-    return result
+    return result.strip()
 
 def just_values(init_text):
-    lines=init_text.split('\n')
+    lines=init_text.strip().split('\n')
     results=[]
     for line in lines:
         parts=line.split("\t")
